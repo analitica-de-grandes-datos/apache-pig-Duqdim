@@ -17,6 +17,6 @@ $ pig -x local -f pregunta.pig
 data = LOAD './data.tsv' AS (letter:chararray, bagArray:chararray, M:map [] );
 gro1 = FOREACH data GENERATE M;
 gro2 = FOREACH gro1 GENERATE FLATTEN(M);  
-X = GROUP gr2 BY $0;
+X = GROUP gro2 BY $0;
 ou = FOREACH X GENERATE group, COUNT($1);
 STORE ou INTO 'output/' using PigStorage(',');
