@@ -22,3 +22,10 @@ $ pig -x local -f pregunta.pig
         >>> Escriba su respuesta a partir de este punto <<<
 */
 
+data = LOAD './data.csv' using PigStorage(',')
+     AS (num:int, name:chararray, LASTNAME:chararray, time:chararray, color:chararray, otre:int);
+gru = FOREACH data GENERATE name, color;
+X = FILTER gru BY (color matches '.*[aeiou]$');
+DUMP X;
+
+STORE X INTO 'output/' using PigStorage(',');
