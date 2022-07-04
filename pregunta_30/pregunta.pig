@@ -48,7 +48,7 @@ c = FOREACH b GENERATE $0, REPLACE($1,'Thursday','jueves'), $2, $3;
 d = FOREACH c GENERATE $0, REPLACE($1,'Friday','viernes'), $2, $3;
 e = FOREACH d GENERATE $0, REPLACE($1,'Saturday','sabado'), $2, $3;
 f = FOREACH e GENERATE $0, REPLACE($1,'Sunday','domingo'), $2, $3;
-g = FOREACH f  GENERATE $0,$2,$3, SUBSTRING($1, 0, 3),$1;
+out = FOREACH f  GENERATE $0,$2,$3, SUBSTRING($1, 0, 3),$1;
 
-STORE g  INTO 'output' USING PigStorage(',');
+STORE out  INTO 'output' USING PigStorage(',');
 
