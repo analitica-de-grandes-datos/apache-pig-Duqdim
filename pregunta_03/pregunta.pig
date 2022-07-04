@@ -11,3 +11,9 @@ $ pig -x local -f pregunta.pig
 
         >>> Escriba su respuesta a partir de este punto <<<
 */
+data = LOAD './data.tsv' AS (letter:chararray, date:chararray, amount:int);
+gro = ORDER data BY amount;
+groa = limit gro 5;
+result = FOREACH groa GENERATE amount;
+
+STORE result INTO 'output/' using PigStorage(',');
